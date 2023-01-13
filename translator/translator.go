@@ -9,10 +9,6 @@ import (
 )
 
 var translator = Translator{}
-var languages = map[language.Tag]string{
-	language.English: "en",
-	language.Hebrew:  "he",
-}
 
 type Translator struct {
 	bundle    *i18n.Bundle
@@ -23,7 +19,7 @@ func (t *Translator) Init(langTag language.Tag) {
 	(*t).bundle = i18n.NewBundle(langTag)
 	t.bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
 
-	lang := languages[langTag]
+	lang := langTag.String()
 	t.bundle.LoadMessageFile(fmt.Sprintf("i18n/%s.json", lang))
 	t.localizer = i18n.NewLocalizer(t.bundle, lang)
 }
