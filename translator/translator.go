@@ -16,7 +16,7 @@ type Translator struct {
 }
 
 func (t *Translator) Init(langTag language.Tag) {
-	(*t).bundle = i18n.NewBundle(langTag)
+	t.bundle = i18n.NewBundle(langTag)
 	t.bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
 
 	lang := langTag.String()
