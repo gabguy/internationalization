@@ -25,12 +25,6 @@ func (t *Translator) Init(langTag language.Tag) {
 }
 
 func (t Translator) Translate(key string, data map[string]string) string {
-	if data == nil {
-		return t.localizer.MustLocalize(&i18n.LocalizeConfig{
-			DefaultMessage: &i18n.Message{ID: key},
-		})
-	}
-
 	return t.localizer.MustLocalize(&i18n.LocalizeConfig{
 		DefaultMessage: &i18n.Message{ID: key},
 		TemplateData:   data,
